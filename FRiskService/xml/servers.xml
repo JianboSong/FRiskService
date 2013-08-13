@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <Item>
+    <Id>7BA06147-B62F-40B0-AF65-79BD24B5DB12</Id>
+    <Name>西部期货</Name>
+    <BrokerId>1006</BrokerId>
+    <ExchangeId>SHFE</ExchangeId>
+    <UserId>00000010</UserId>
+    <Password>123456</Password>
+    <MarketAddress>tcp://58.246.57.38:41213</MarketAddress>
+    <TradeAddress>tcp://58.246.57.38:41205</TradeAddress>
+  </Item>
+  <Item>
+    <Id>7BA06147-B62F-40B0-AF65-79BD24B5DB11</Id>
+    <Name>美尔雅期货</Name>
+    <BrokerId>1035</BrokerId>
+    <ExchangeId>SHFE</ExchangeId>
+    <UserId>00000044</UserId>
+    <Password>123456</Password>
+    <MarketAddress>tcp://27.17.62.149:40213</MarketAddress>
+    <TradeAddress>tcp://27.17.62.149:40205</TradeAddress>
+  </Item>
+  <Item>
+    <Id>7BA06147-B62F-40B0-AF65-79BD24B5DB13</Id>
+    <Name>东证期货</Name>
+    <BrokerId>1014</BrokerId>
+    <ExchangeId>SHFE</ExchangeId>
+    <UserId>00000026</UserId>
+    <Password>123456</Password>
+    <MarketAddress>tcp://218.93.10.248:42213</MarketAddress>
+    <TradeAddress>tcp://218.93.10.248:42205</TradeAddress>
+  </Item>
+</Root>

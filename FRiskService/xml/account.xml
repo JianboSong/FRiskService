@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<StartMoney>5000000</StartMoney>
+	<TotalLossRatio>0.05</TotalLossRatio>
+	<TotalLossAmount>25000</TotalLossAmount>
+	<MinimalQuanyi>4600000</MinimalQuanyi>
+</Root>

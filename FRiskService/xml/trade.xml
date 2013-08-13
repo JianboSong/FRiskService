@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<InstrumentID>IF1308</InstrumentID>
+	<VolumeMultiple>300</VolumeMultiple>
+	<PriceTick>0.2</PriceTick>
+	<OpenRatioByMoney>0.0003</OpenRatioByMoney>
+	<CloseRatioByMoney>0.0003</CloseRatioByMoney>
+	<CloseTodayRatioByMoney>0.0003</CloseTodayRatioByMoney>
+	<DefaultVolume>5</DefaultVolume>
+	<BuyStopPoint>10</BuyStopPoint>
+	<BuyAddPoint>1</BuyAddPoint>
+	<SellStopPoint>10</SellStopPoint>
+	<SellAddPoint>1</SellAddPoint>
+</Root>

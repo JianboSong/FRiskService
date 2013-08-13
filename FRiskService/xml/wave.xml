@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<!-- 波动判定值 (实际值) -->
+	<Spread>20.0</Spread>
+	<!-- 启用小波控制 -->
+	<SmallEnable>0</SmallEnable>
+	<!-- 连续进入次数 -->
+	<SmallRepeat>2</SmallRepeat>
+
+	<SmallFullAmount>3000.0</SmallFullAmount>
+	<SmallFullTimes>5</SmallFullTimes>
+
+	<SmallPartialBuyAmount>1000.0</SmallPartialBuyAmount>
+	<SmallPartialBuyTimes>2</SmallPartialBuyTimes>
+
+	<SmallPartialSellAmount>1000.0</SmallPartialSellAmount>
+	<SmallPartialSellTimes>2</SmallPartialSellTimes>
+
+	<!-- 现波大于前波比例 -->
+	<SmallUnlockCase1Ratio1>0.7</SmallUnlockCase1Ratio1>
+
+	<!-- 现波小于前波比例 -->
+	<SmallUnlockCase2Ratio2>0.4</SmallUnlockCase2Ratio2>
+	<SmallUnlockCase2Times>3</SmallUnlockCase2Times>
+
+	<!-- 连续 n 根五分钟线最大差值小于 -->
+	<SmallUnlockCase3NRecord>2</SmallUnlockCase3NRecord>
+	<SmallUnlockCase3DiffValue>10.0</SmallUnlockCase3DiffValue>
+
+	<!-- 启用大波控制 -->
+	<BigEnable>0</BigEnable>
+	<!-- 连续进入次数 -->
+	<BigRepeat>2</BigRepeat>
+
+	<BigFullAmount>3000.0</BigFullAmount>
+	<BigFullTimes>5</BigFullTimes>
+
+	<BigPartialBuyAmount>1000.0</BigPartialBuyAmount>
+	<BigPartialBuyTimes>2</BigPartialBuyTimes>
+	<BigPartialSellAmount>1000.0</BigPartialSellAmount>
+	<BigPartialSellTimes>2</BigPartialSellTimes>
+
+	<!-- |最新市场成交价 - 最近成交区域均价| > -->
+	<BigUnlockCase1DiffPrice>5.6</BigUnlockCase1DiffPrice>
+
+	<!-- 某5分钟线波动大于实际涨跌绝对值 N 倍, 实际涨跌值大于 M -->
+	<BigUnlockCase2Multiple>3</BigUnlockCase2Multiple>
+	<BigUnlockCase2DiffPrice>10.4</BigUnlockCase2DiffPrice>
+
+</Root>
