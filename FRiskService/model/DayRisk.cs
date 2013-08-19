@@ -8,6 +8,22 @@ namespace FRiskService.model
 {
 	public class DayRisk
 	{
+		private string accountId;
+
+		public string AccountId
+		{
+			get { return accountId; }
+			set { accountId = value; }
+		}
+
+		private string instrumentId;
+
+		public string InstrumentId
+		{
+			get { return instrumentId; }
+			set { instrumentId = value; }
+		}
+
 		private double dayLossAmount;
 
 		public double DayLossAmount
@@ -30,6 +46,14 @@ namespace FRiskService.model
 		{
 			get { return stopMinutes; }
 			set { stopMinutes = value; }
+		}
+
+		private string stopTimes;
+
+		public string StopTimes
+		{
+			get { return stopTimes; }
+			set { stopTimes = value; }
 		}
 	}
 }

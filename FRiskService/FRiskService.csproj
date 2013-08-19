@@ -58,6 +58,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -73,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\IFRiskAPI.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="impl\FRiskService.cs" />
     <Compile Include="model\ClosePositionRisk.cs" />
     <Compile Include="model\DayRisk.cs" />
@@ -81,6 +88,7 @@
     <Compile Include="model\Server.cs" />
     <Compile Include="model\AccountRisk.cs" />
     <Compile Include="model\Trade.cs" />
+    <Compile Include="model\Account.cs" />
     <Compile Include="model\WaveRisk.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -96,15 +104,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="scripts\FRiskService.dml.sql" />
+    <Content Include="scripts\FRiskService.ddl.sql" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="xml\account.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="installService.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="uninstallService.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -117,6 +139,7 @@
   <ItemGroup>
     <Content Include="xml\day.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="xml\position.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -126,6 +149,7 @@
     </Content>
     <Content Include="xml\servers.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="xml\trade.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -133,6 +157,7 @@
     </Content>
     <Content Include="xml\wave.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

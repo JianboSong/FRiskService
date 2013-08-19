@@ -14,79 +14,105 @@ namespace FRiskService.api
 	public interface IFRiskAPI
 	{
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/servers", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		IList<Server> GetServerList();
+		[WebInvoke(Method = "GET", UriTemplate = "/account", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		IList<Account> GetAccountList();
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/server/{id}", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		Server GetServer(string id);
+		[WebInvoke(Method = "GET", UriTemplate = "/account/{id}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		Account GetAccount(string id);
 
 		[OperationContract]
-		[WebInvoke(Method = "POST", UriTemplate = "/server", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		Server AddServer(Server server);
+		[WebInvoke(Method = "POST", UriTemplate = "/account", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		Account AddAccount(Account account);
 
 		[OperationContract]
-		[WebInvoke(Method = "PUT", UriTemplate = "/server", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		Server UpdateServer(Server server);
+		[WebInvoke(Method = "PUT", UriTemplate = "/account", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		Account UpdateAccount(Account account);
 
 		[OperationContract]
-		[WebInvoke(Method = "DELETE", UriTemplate = "/server/{id}", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		bool DeleteServer(string id);
+		[WebInvoke(Method = "DELETE", UriTemplate = "/account/{id}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		bool DeleteAccount(string id);
 
 
-		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/security/{type}", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		string GetPassword(string type);
+		// -------------------------------------------
 
 		[OperationContract]
-		[WebInvoke(Method = "PUT", UriTemplate = "/security/{type}/{password}", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		string UpdatePassword(string type, string password);
+		[WebInvoke(Method = "GET", UriTemplate = "/trade/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		Trade GetTrade(string accountId, string instrumentId);
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/trade", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		Trade GetTrade();
+		[WebInvoke(Method = "POST", UriTemplate = "/trade", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		Trade AddTrade(Trade param);
 
 		[OperationContract]
 		[WebInvoke(Method = "PUT", UriTemplate = "/trade", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
+					ResponseFormat = WebMessageFormat.Json)]
 		Trade UpdateTrade(Trade param);
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/accountRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		AccountRisk GetAccountRisk();
+		[WebInvoke(Method = "DELETE", UriTemplate = "/trade/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		bool DeleteTrade(string accountId, string instrumentId);
+
+		// -------------------------------------------
 
 		[OperationContract]
-		[WebInvoke(Method = "PUT", UriTemplate = "/accountRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		AccountRisk UpdateAccountRisk(AccountRisk param);
+		[WebInvoke(Method = "GET", UriTemplate = "/security/{accountId}/{type}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		string GetPassword(string accountId, string type);
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/dayRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		DayRisk GetDayRisk();
+		[WebInvoke(Method = "PUT", UriTemplate = "/security/{accountId}/{type}/{password}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		string UpdatePassword(string accountId, string type, string password);
+
+		//[OperationContract]
+		//[WebInvoke(Method = "GET", UriTemplate = "/dayRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+		//			ResponseFormat = WebMessageFormat.Json)]
+		//DayRisk GetDayRisk(string accountId, string instrumentId);
+
+		//[OperationContract]
+		//[WebInvoke(Method = "POST", UriTemplate = "/dayRisk", RequestFormat = WebMessageFormat.Json,
+		//			ResponseFormat = WebMessageFormat.Json)]
+		//DayRisk AddDayRisk(DayRisk param);
+
+		//[OperationContract]
+		//[WebInvoke(Method = "PUT", UriTemplate = "/dayRisk", RequestFormat = WebMessageFormat.Json,
+		//			ResponseFormat = WebMessageFormat.Json)]
+		//DayRisk UpdateDayRisk(DayRisk param);
+
+		//[OperationContract]
+		//[WebInvoke(Method = "DELETE", UriTemplate = "/dayRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+		//			ResponseFormat = WebMessageFormat.Json)]
+		//bool DeleteDayRisk(string accountId, string instrumentId);
+
+		// -------------------------------------------
 
 		[OperationContract]
-		[WebInvoke(Method = "PUT", UriTemplate = "/dayRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		DayRisk UpdateDayRisk(DayRisk param);
+		[WebInvoke(Method = "GET", UriTemplate = "/waveRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		WaveRisk GetWaveRisk(string accountId, string instrumentId);
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/waveRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
-		WaveRisk GetWaveRisk();
+		[WebInvoke(Method = "POST", UriTemplate = "/waveRisk", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		WaveRisk AddWaveRisk(WaveRisk param);
 
 		[OperationContract]
 		[WebInvoke(Method = "PUT", UriTemplate = "/waveRisk", RequestFormat = WebMessageFormat.Json,
-				   ResponseFormat = WebMessageFormat.Json)]
+					ResponseFormat = WebMessageFormat.Json)]
 		WaveRisk UpdateWaveRisk(WaveRisk param);
+
+		[OperationContract]
+		[WebInvoke(Method = "DELETE", UriTemplate = "/waveRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		bool DeleteWaveRisk(string accountId, string instrumentId);
 	}
 }

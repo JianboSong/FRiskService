@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Reflection;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRiskService
 {
@@ -14,12 +12,26 @@ namespace FRiskService
 		/// </summary>
 		static void Main()
 		{
+			Global.connstr = string.Format(@"Data Source={0}", Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config"));
+
 			ServiceBase[] ServicesToRun;
 			ServicesToRun = new ServiceBase[] 
-            { 
-                new FRiskService() 
-            };
+			{ 
+				new FRiskService() 
+			};
 			ServiceBase.Run(ServicesToRun);
+			
+			//IFRiskAPI server = new FRiskAPI();;
+			//WebServiceHost _serviceHost = new WebServiceHost(server.GetType(), new Uri(ConfigurationManager.AppSettings["serviceEndPoint"]));
+			//try
+			//{
+			//	_serviceHost.Open();
+			//}
+			//catch (Exception e)
+			//{
+			//	throw e;
+			//}
+			//while (true) ;
 		}
 	}
 }
