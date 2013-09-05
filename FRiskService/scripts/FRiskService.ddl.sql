@@ -48,6 +48,20 @@ CREATE TABLE trade_risk (
 	constraint pk_t1 primary key (account_id,instrument_id)
 );
 
+CREATE TABLE position_strategy (
+	account_id TEXT,
+	instrument_id TEXT,
+	enable INT,
+	buy_upper_point INT,
+	sell_upper_point INT,
+	buy_lower_point INT,
+	sell_lower_point INT,
+	buy_protect_point INT,
+	sell_protect_point INT,
+	buy_multiplier INT,
+	sell_multiplier INT
+);
+
 CREATE TABLE wave_strategy (
 	account_id TEXT,
 	instrument_id TEXT,

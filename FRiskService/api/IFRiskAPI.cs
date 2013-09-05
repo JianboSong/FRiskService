@@ -38,6 +38,27 @@ namespace FRiskService.api
 					ResponseFormat = WebMessageFormat.Json)]
 		bool DeleteAccount(string id);
 
+		// -------------------------------------------
+
+		[OperationContract]
+		[WebInvoke(Method = "GET", UriTemplate = "/positionRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		PositionRisk GetPositionRisk(string accountId, string instrumentId);
+
+		[OperationContract]
+		[WebInvoke(Method = "POST", UriTemplate = "/positionRisk", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		PositionRisk AddPositionRisk(PositionRisk param);
+
+		[OperationContract]
+		[WebInvoke(Method = "PUT", UriTemplate = "/positionRisk", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		PositionRisk UpdatePositionRisk(PositionRisk param);
+
+		[OperationContract]
+		[WebInvoke(Method = "DELETE", UriTemplate = "/positionRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,
+					ResponseFormat = WebMessageFormat.Json)]
+		bool DeletePositionRisk(string accountId, string instrumentId);
 
 		// -------------------------------------------
 
@@ -64,14 +85,14 @@ namespace FRiskService.api
 		// -------------------------------------------
 
 		[OperationContract]
-		[WebInvoke(Method = "GET", UriTemplate = "/security/{accountId}/{type}", RequestFormat = WebMessageFormat.Json,
+		[WebInvoke(Method = "GET", UriTemplate = "/security/{accountId}", RequestFormat = WebMessageFormat.Json,
 					ResponseFormat = WebMessageFormat.Json)]
-		string GetPassword(string accountId, string type);
+		Security GetSecurity(string accountId);
 
 		[OperationContract]
-		[WebInvoke(Method = "PUT", UriTemplate = "/security/{accountId}/{type}/{password}", RequestFormat = WebMessageFormat.Json,
+		[WebInvoke(Method = "PUT", UriTemplate = "/security/{accountId}", RequestFormat = WebMessageFormat.Json,
 					ResponseFormat = WebMessageFormat.Json)]
-		string UpdatePassword(string accountId, string type, string password);
+		Security UpdateSecurity(string accountId, Security security);
 
 		//[OperationContract]
 		//[WebInvoke(Method = "GET", UriTemplate = "/dayRisk/{accountId}/{instrumentId}", RequestFormat = WebMessageFormat.Json,

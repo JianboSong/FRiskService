@@ -260,6 +260,154 @@ namespace FRiskService.impl
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		public PositionRisk GetPositionRisk(string accountId, string instrumentId)
+		{
+			using (var conn = new SQLiteConnection(Global.connstr))
+			using (var cmd = conn.CreateCommand())
+			{
+				conn.Open();
+				cmd.CommandText = "SELECT * from position_strategy where account_id = @accountId and instrument_id = @instrumentId";
+				cmd.Parameters.AddWithValue("@accountId", accountId);
+				cmd.Parameters.AddWithValue("@instrumentId", instrumentId);
+				using (var reader = cmd.ExecuteReader())
+				{
+					PositionRisk positionRisk = new PositionRisk();
+					while (reader.Read())
+					{
+						positionRisk.AccountId = reader.IsDBNull(reader.GetOrdinal("account_id")) ? null : reader.GetString(reader.GetOrdinal("account_id"));
+						positionRisk.InstrumentId = reader.IsDBNull(reader.GetOrdinal("instrument_id")) ? null : reader.GetString(reader.GetOrdinal("instrument_id"));
+						positionRisk.Enable = reader.GetInt32(reader.GetOrdinal("enable")) == 1;
+						positionRisk.BuyUpperPoint = reader.GetInt32(reader.GetOrdinal("buy_upper_point"));
+						positionRisk.SellUpperPoint = reader.GetInt32(reader.GetOrdinal("sell_upper_point"));
+						positionRisk.BuyLowerPoint = reader.GetInt32(reader.GetOrdinal("buy_lower_point"));
+						positionRisk.SellLowerPoint = reader.GetInt32(reader.GetOrdinal("sell_lower_point"));
+						positionRisk.BuyProtectPoint = reader.GetInt32(reader.GetOrdinal("buy_protect_point"));
+						positionRisk.SellProtectPoint = reader.GetInt32(reader.GetOrdinal("sell_protect_point"));
+						positionRisk.BuyMultiplier = reader.GetInt32(reader.GetOrdinal("buy_multiplier"));
+						positionRisk.SellMultiplier = reader.GetInt32(reader.GetOrdinal("sell_multiplier"));
+					}
+					return positionRisk;
+				}
+			}
+		}
+
+		public PositionRisk AddPositionRisk(PositionRisk param)
+		{
+			using (var conn = new SQLiteConnection(Global.connstr))
+
+			using (var cmd = conn.CreateCommand())
+			{
+				conn.Open();
+				cmd.CommandText = @"insert into position_strategy (account_id, instrument_id, enable
+						, buy_upper_point, sell_upper_point, buy_lower_point, sell_lower_point
+						, buy_protect_point, sell_protect_point, buy_multiplier, sell_multiplier
+						) values (@accountId, @instrumentId, @enable
+						, @buyUpperPoint, @sellUpper_point, @buyLowerPoint,  @sellLowerPoint
+						, @buyProtectPoint, @sellProtectPoint, @buyMultiplier, @sellMultiplier)";
+				cmd.Parameters.AddWithValue("@accountId", param.AccountId);
+				cmd.Parameters.AddWithValue("@instrumentId", param.InstrumentId);
+				cmd.Parameters.AddWithValue("@enable", param.Enable);
+				cmd.Parameters.AddWithValue("@buyUpperPoint", param.BuyUpperPoint);
+				cmd.Parameters.AddWithValue("@sellUpper_point", param.SellUpperPoint);
+				cmd.Parameters.AddWithValue("@buyLowerPoint", param.BuyLowerPoint);
+				cmd.Parameters.AddWithValue("@sellLowerPoint", param.SellLowerPoint);
+				cmd.Parameters.AddWithValue("@buyProtectPoint", param.BuyProtectPoint);
+				cmd.Parameters.AddWithValue("@sellProtectPoint", param.SellProtectPoint);
+				cmd.Parameters.AddWithValue("@buyMultiplier", param.BuyMultiplier);
+				cmd.Parameters.AddWithValue("@sellMultiplier", param.SellMultiplier);
+
+				SQLiteTransaction trans = conn.BeginTransaction();
+				try
+				{
+					int retval = cmd.ExecuteNonQuery();
+					if (retval < 1)
+						return null;
+				}
+				catch (Exception ex)
+				{
+					trans.Rollback();
+				}
+				finally
+				{
+					trans.Commit();
+				}
+				return param;
+			}
+		}
+
+		public PositionRisk UpdatePositionRisk(PositionRisk param)
+		{
+			using (var conn = new SQLiteConnection(Global.connstr))
+
+			using (var cmd = conn.CreateCommand())
+			{
+				conn.Open();
+				cmd.CommandText = @"update position_strategy set enable = @enable
+						, buy_upper_point = @buyUpperPoint, sell_upper_point = @sellUpper_point, buy_lower_point = @buyLowerPoint, sell_lower_point = @sellLowerPoint
+						, buy_protect_point = @buyProtectPoint, sell_protect_point = @sellProtectPoint, buy_multiplier = @buyMultiplier, sell_multiplier = @sellMultiplier
+						where account_id = @accountId and instrument_id = @instrumentId";
+				cmd.Parameters.AddWithValue("@accountId", param.AccountId);
+				cmd.Parameters.AddWithValue("@instrumentId", param.InstrumentId);
+				cmd.Parameters.AddWithValue("@enable", param.Enable);
+				cmd.Parameters.AddWithValue("@buyUpperPoint", param.BuyUpperPoint);
+				cmd.Parameters.AddWithValue("@sellUpper_point", param.SellUpperPoint);
+				cmd.Parameters.AddWithValue("@buyLowerPoint", param.BuyLowerPoint);
+				cmd.Parameters.AddWithValue("@sellLowerPoint", param.SellLowerPoint);
+				cmd.Parameters.AddWithValue("@buyProtectPoint", param.BuyProtectPoint);
+				cmd.Parameters.AddWithValue("@sellProtectPoint", param.SellProtectPoint);
+				cmd.Parameters.AddWithValue("@buyMultiplier", param.BuyMultiplier);
+				cmd.Parameters.AddWithValue("@sellMultiplier", param.SellMultiplier);
+
+				SQLiteTransaction trans = conn.BeginTransaction();
+				try
+				{
+					int retval = cmd.ExecuteNonQuery();
+					if (retval < 1)
+						return null;
+				}
+				catch (Exception ex)
+				{
+					trans.Rollback();
+				}
+				finally
+				{
+					trans.Commit();
+				}
+				return param;
+			}
+		}
+
+		public bool DeletePositionRisk(string accountId, string instrumentId)
+		{
+			using (var conn = new SQLiteConnection(Global.connstr))
+
+			using (var cmd = conn.CreateCommand())
+			{
+				conn.Open();
+				cmd.CommandText = @"delete from position_strategy where account_id = @accountId and instrument_id = @instrumentId";
+				cmd.Parameters.AddWithValue("@accountId", accountId);
+				cmd.Parameters.AddWithValue("@instrumentId", instrumentId);
+				SQLiteTransaction trans = conn.BeginTransaction();
+				try
+				{
+					int retval = cmd.ExecuteNonQuery();
+					if (retval < 1)
+						return false;
+				}
+				catch (Exception ex)
+				{
+					trans.Rollback();
+				}
+				finally
+				{
+					trans.Commit();
+				}
+				return true;
+			}
+		}
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		public Trade GetTrade(string accountId, string instrumentId)
 		{
 			using (var conn = new SQLiteConnection(Global.connstr))
@@ -409,37 +557,47 @@ namespace FRiskService.impl
 			}
 		}
 
-		public string GetPassword(string accountId, string type)
+		public Security GetSecurity(string accountId)
 		{
-			string password = null;
+			Security security = new Security();
 			using (var conn = new SQLiteConnection(Global.connstr))
 			using (var cmd = conn.CreateCommand())
 			{
 				conn.Open();
-				cmd.CommandText = "SELECT " + type + "_password from trade_account where id = @id";
+				cmd.CommandText = "SELECT owner_password, team_password, admin_password, operator_password from trade_account where id = @id";
 				cmd.Parameters.AddWithValue("@id", accountId);
 				using (var reader = cmd.ExecuteReader())
 				{
 					while (reader.Read())
 					{
-						password = reader.IsDBNull(0) ? null : reader.GetString(0);
+						security.OwnerPassword = reader.IsDBNull(0) ? null : reader.GetString(0);
+						security.TeamPassword = reader.IsDBNull(1) ? null : reader.GetString(1);
+						security.AdminPassword = reader.IsDBNull(2) ? null : reader.GetString(2);
+						security.OperatorPassword = reader.IsDBNull(3) ? null : reader.GetString(3);
 					}
 					
 				}
 			}
-			return password;
+			return security;
 		}
 
-		public string UpdatePassword(string accountId, string type, string password)
+		public Security UpdateSecurity(string accountId, Security security)
 		{
 			using (var conn = new SQLiteConnection(Global.connstr))
 
 			using (var cmd = conn.CreateCommand())
 			{
 				conn.Open();
-				cmd.CommandText = @"update trade_account set " + type + "_password = @password where id = @id";
+				cmd.CommandText = @"update trade_account set owner_password = @ownerPassword,
+							team_password = @teamPassword,
+							admin_password = @adminPassword,
+							operator_password = @operatorPassword
+							where id = @id";
 				cmd.Parameters.AddWithValue("@id", accountId);
-				cmd.Parameters.AddWithValue("@password", password);
+				cmd.Parameters.AddWithValue("@ownerPassword", security.OwnerPassword);
+				cmd.Parameters.AddWithValue("@teamPassword", security.TeamPassword);
+				cmd.Parameters.AddWithValue("@adminPassword", security.AdminPassword);
+				cmd.Parameters.AddWithValue("@operatorPassword", security.OperatorPassword);
 
 				SQLiteTransaction trans = conn.BeginTransaction();
 				try
@@ -456,7 +614,7 @@ namespace FRiskService.impl
 				{
 					trans.Commit();
 				}
-				return password;
+				return security;
 			}
 		}
 

@@ -8,8 +8,32 @@ namespace FRiskService.model
 {
 	public class Security
 	{
-		public string OwnerPassword;
-		public string OperatorPassword;
-		public string RiskControlPassword;
+		private string ownerPassword;
+		public string OwnerPassword
+		{
+			get { return ownerPassword; }
+			set { ownerPassword = value; }
+		}
+
+		private string teamPassword;
+		public string TeamPassword
+		{
+			get { return teamPassword; }
+			set { teamPassword = value; }
+		}
+
+		private string adminPassword;
+		public string AdminPassword
+		{
+			get { return adminPassword; }
+			set { adminPassword = value; }
+		}
+
+		private string operatorPassword;
+		public string OperatorPassword
+		{
+			get { return operatorPassword; }
+			set { operatorPassword = value; }
+		}
 	}
 }
